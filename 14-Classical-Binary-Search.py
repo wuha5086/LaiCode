@@ -1,19 +1,25 @@
-class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
-        islands = 0
-        for i in range(len(grid)):
-            for j in range(len(grid[i])):
-                if grid[i][j] == '1':
-                    islands += 1
-                    self.helper(grid,i,j)
-        return islands
-    def helper(self,grid,i,j):
-        if i<0 or j<0 or i>=len(grid) or j>=len(grid[i]) or grid[i][j] != '1':
-            return
-        grid[i][j] = '0'
-        self.helper(grid, i+1, j)
-        self.helper(grid, i-1, j)
-        self.helper(grid, i, j+1)
-        self.helper(grid, i, j-1)
- 
- # https://www.youtube.com/watch?v=i2PYONDKbdk&feature=youtu.be
+class Solution(object):
+  def binarySearch(self, array, target):
+    """
+    input: int[] array, int target
+    return: int
+    """
+    # write your solution here
+    if array is None or len(array)==0:
+      return -1
+    left = 0
+    right = len(array)-1
+    while left < right-1:
+      mid = (left+right)//2
+      if array[mid] == target:
+        return mid
+      if array[mid] < target:
+        left = mid
+      else:
+        right = mid
+    if array[left] == target:
+      return left
+    if array[right] == target:
+      return right
+    return -1
+    
